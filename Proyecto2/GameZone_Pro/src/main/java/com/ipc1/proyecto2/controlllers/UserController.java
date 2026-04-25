@@ -34,30 +34,34 @@ public class UserController {
     }
     
     // LOGUEAR Y REGISTRAR /////////////////////////////////////////////////////
-    public void register(String username, String password) {
+    public User register(String username, String password) {
         loadUsers();
         if (username == null || username.isEmpty()) {
             JOptionPane.showMessageDialog(null,
                 "El nombre de usuario no puede estar vacío.",
                 "ERROR", JOptionPane.ERROR_MESSAGE);
+            return null;
         }
 
         if (password == null || password.isEmpty()) {
             JOptionPane.showMessageDialog(null,
                 "La contraseña no puede estar vacía.",
                 "ERROR", JOptionPane.ERROR_MESSAGE);
+            return null;
         }
 
         if (n_users >= 100) {
             JOptionPane.showMessageDialog(null,
                 "No se pueden registrar más usuarios. Límite alcanzado (" + 100 + ").",
                 "ERROR", JOptionPane.ERROR_MESSAGE);
+            return null;
         }
 
         if (findUser(username) != null) {
             JOptionPane.showMessageDialog(null,
                 "El usuario '" + username + "' ya existe.\nIntente con otro nombre.",
                 "ERROR", JOptionPane.ERROR_MESSAGE);
+            return null;
         }
 
         users[n_users] = new User(username, password, 0, 1);
@@ -66,21 +70,23 @@ public class UserController {
         saveUsersToFile();
         listUsers();
         
-        login(username, password);
+        return (login(username, password));
     }
     //
-    public void login(String username, String password) {
+    public User login(String username, String password) {
         loadUsers();
         if (username == null || username.isEmpty()) {
             JOptionPane.showMessageDialog(null,
                 "Debe ingresar un nombre de usuario.",
                 "ERROR", JOptionPane.ERROR_MESSAGE);
+            return null;
         }
 
         if (password == null || password.isEmpty()) {
             JOptionPane.showMessageDialog(null,
                 "Debe ingresar una contraseña.",
                 "RROR", JOptionPane.ERROR_MESSAGE);
+            return null;
         }
 
         User found = findUser(username);
@@ -89,16 +95,19 @@ public class UserController {
             JOptionPane.showMessageDialog(null,
                 "El usuario '" + username + "' no existe.",
                 "ERROR", JOptionPane.ERROR_MESSAGE);
+            return null;
         }
 
         if (!found.getPassword().equals(password)) {
             JOptionPane.showMessageDialog(null,
                 "Contraseña incorrecta. Intente de nuevo.",
                 "ERROR", JOptionPane.ERROR_MESSAGE);
+            return null;
         }
         
         System.out.println("BIEN VENIDO "+username);
         loggedUser = found;
+        return loggedUser;
     }
     //
     public void logout() {

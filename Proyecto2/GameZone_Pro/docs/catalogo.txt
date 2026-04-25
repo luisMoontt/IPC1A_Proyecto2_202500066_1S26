@@ -1,3 +1,3 @@
-VDG-001|Minecraft Java&Berock|Aventura|299.99|Windows|61|Tu no lo sabes te estoy vigilando, desde la distancia me estoy acercando...|
-VDG-002|God of War|Aventura|350.0|PlayStation|23|Narra la historia de Kratos, un guerrero espartano que busca venganza contra los dioses mitológicos.|
+VDG-001|Minecraft Java&Berock|Aventura|299.99|Windows|55|Tu no lo sabes te estoy vigilando, desde la distancia me estoy acercando...|
+VDG-002|God of War|Aventura|350.0|PlayStation|21|Narra la historia de Kratos, un guerrero espartano que busca venganza contra los dioses mitológicos.|
 VDG-003|Halo|Aventura|250.0|Xbox|25|El juego narra la lucha del Jefe Maestro y la IA Cortana contra el Covenant (una alianza alienígena).|
