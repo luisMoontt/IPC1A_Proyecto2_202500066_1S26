@@ -14,12 +14,14 @@ import javax.swing.JOptionPane;
  * @author Admin
  */
 public class UserController {
+    AchievementsController a_controller;
     private User[] users;
     private int n_users;
     private User loggedUser;
     private static final String FILE_PATH = "users.txt";
 
     public UserController() {
+        this.a_controller = new AchievementsController();
         this.users = new User[100];
         this.n_users = 0;
         this.loggedUser = null;
@@ -69,6 +71,18 @@ public class UserController {
         
         saveUsersToFile();
         listUsers();
+        
+        a_controller.add((n_users+1), username,"Primera Compra", "Realiza tu primera compra en la tienda.", false);
+        a_controller.add((n_users+2), username,"Coleccionista Novato", "Añade 10 cartas a tu álbum.", false);
+        a_controller.add((n_users+3), username,"Coleccionista Experto", "Completa una fila completa del álbum.", false);
+        a_controller.add((n_users+4), username,"Taquillero", "Compra tickets para 3 torneos distintos.", false);
+        
+        a_controller.add((n_users+5), username,"Alta Rareza", "Obtén una carta de rareza Legendaria.", false);
+        a_controller.add((n_users+6), username,"Gamer Dedicado", "Acumula 1,000 XP.", false);
+        a_controller.add((n_users+7), username,"Leyenda Viviente", "Alcanza el Nivel 5.", false);
+        a_controller.add((n_users+8), username,"Gran Gastador", "Gasta más de Q2,000 en la tienda.", false);
+       
+        
         
         return (login(username, password));
     }

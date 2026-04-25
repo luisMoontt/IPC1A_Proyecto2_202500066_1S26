@@ -4,6 +4,8 @@
  */
 package com.ipc1.proyecto2.views;
 
+import com.ipc1.proyecto2.controlllers.UserController;
+import com.ipc1.proyecto2.models.User;
 import java.awt.CardLayout;
 import javax.swing.border.EmptyBorder;
 
@@ -12,15 +14,23 @@ import javax.swing.border.EmptyBorder;
  * @author Admin
  */
 public class Module extends javax.swing.JFrame {
+    UserController u_controller;
+    User loggedUser;
+    
+    UserPane u_pane;
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Module.class.getName());
 
     /**
      * Creates new form Module
      */
-    public Module() {
+    public Module(User loggedUser) {
+        this.u_controller = new UserController();
+        this.loggedUser = loggedUser;
+        
+        this.u_pane = new UserPane(loggedUser, u_controller);
+        
         StorePane s_pane = new StorePane();
-        UserPane u_pane = new UserPane();
         AlbumPane a_pane = new AlbumPane();
         EventsPane e_pane = new EventsPane();
         RankingPane r_pane = new RankingPane();
@@ -184,9 +194,10 @@ public class Module extends javax.swing.JFrame {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        User loggedUser = null;
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Module().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new Module(loggedUser).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

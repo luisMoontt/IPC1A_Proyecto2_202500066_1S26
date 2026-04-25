@@ -8,18 +8,16 @@ public class Achievements {
     private String id_user;
     private String name;
     private String description;
-    private int xp;
     private boolean state;
 
     public Achievements() {
     }
 
-    public Achievements(int id_achievement, String id_user, String name, String description, int xp, boolean state) {
+    public Achievements(int id_achievement, String id_user, String name, String description, boolean state) {
         this.id_achievement = id_achievement;
         this.id_user = id_user;
         this.name = name;
         this.description = description;
-        this.xp = xp;
         this.state = state;
     }
 
@@ -55,19 +53,13 @@ public class Achievements {
         this.description = description;
     }
 
-    public int getXp() {
-        return xp;
-    }
-
-    public void setXp(int xp) {
-        this.xp = xp;
-    }
-
     public boolean isState() {
         return state;
     }
 
     public void setState(boolean state) {
         this.state = state;
-    }   
+    }
+    
+    
 }

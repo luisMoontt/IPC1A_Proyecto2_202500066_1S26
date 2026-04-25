@@ -154,12 +154,16 @@ public class Register extends javax.swing.JFrame {
         User loggedUser;
         loggedUser = register();
         
-        if (loggedUser != null){
-            JOptionPane.showMessageDialog(null,
-                "Bien venido "+loggedUser.getUsername(),
-                "REGISTRO EXITOSO", INFORMATION_MESSAGE);
-            this.setVisible(false);
-        }    
+//        if (loggedUser != null){
+//            JOptionPane.showMessageDialog(null,
+//                "Bien venido "+loggedUser.getUsername(),
+//                "REGISTRO EXITOSO", INFORMATION_MESSAGE);
+//            this.setVisible(false);
+//        }
+        Module module_view = new Module(loggedUser);
+        
+        this.setVisible(false);
+        module_view.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed

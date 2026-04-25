@@ -12,7 +12,6 @@ import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 public class Login extends javax.swing.JFrame {
     Register r_view;
     UserController u_controller;
-    Module module_view;
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Login.class.getName());
 
@@ -22,7 +21,6 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         this.u_controller = new UserController();
         this.r_view = new Register();
-        this.module_view = new Module();
         
         
         initComponents();
@@ -169,7 +167,7 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         User loggedUser;
-        //loggedUser = login();
+        loggedUser = login();
         
 //        if (loggedUser != null){
 //            JOptionPane.showMessageDialog(null,
@@ -177,6 +175,9 @@ public class Login extends javax.swing.JFrame {
 //                "LOGIN EXITOSO", INFORMATION_MESSAGE);
 //            this.setVisible(false);
 //        }
+        
+        Module module_view = new Module(loggedUser);
+        
         this.setVisible(false);
         module_view.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed

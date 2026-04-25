@@ -1,6 +1,6 @@
 luismont|123456|0|1|
 luisElPro|123456|0|1|
-noely|654321|0|2|
+noely|67|6500|5|
 lina|asdasd|0|1|
 luisito|12345|0|1|
 joje|123|0|1|
