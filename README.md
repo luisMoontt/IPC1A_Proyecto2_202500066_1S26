@@ -1,11 +1,11 @@
-# 🎮 GameZone Pro
+# GameZone Pro (Guia)
 
 > Sistema de gestión de videojuegos desarrollado en Java con Swing  
 > **IPC1 — Proyecto 2 | 1S26 | Carné: 202500066**
 
 ---
 
-## 📋 Requisitos previos
+## Requisitos previos
 
 Antes de ejecutar el proyecto asegúrate de tener instalado:
 
@@ -18,7 +18,7 @@ Antes de ejecutar el proyecto asegúrate de tener instalado:
 
 ---
 
-## 🚀 Pasos de ejecución
+## Pasos de ejecución
 
 ### Opción A — Clonar el repositorio
 
@@ -42,7 +42,7 @@ cd ruta/a/GameZone_Pro
 
 ---
 
-### ▶️ Ejecutar con Maven (terminal)
+### Ejecutar con Maven (terminal)
 
 ```bash
 # 1. Compilar el proyecto y descargar dependencias
@@ -52,14 +52,14 @@ mvn clean install
 mvn exec:java -Dexec.mainClass="com.ipc1.proyecto2.main.GameZone_Pro"
 ```
 
-### ▶️ Ejecutar con NetBeans
+### Ejecutar con NetBeans
 
 1. Abre NetBeans
 2. **File → Open Project** → selecciona la carpeta `GameZone_Pro`
 3. Clic derecho sobre el proyecto → **Clean and Build**
 4. Presiona **Run Project** (F6)
 
-### ▶️ Ejecutar el JAR directamente
+### Ejecutar el JAR directamente
 
 ```bash
 # Primero genera el JAR
@@ -69,11 +69,11 @@ mvn clean package
 java -jar target/GameZone_Pro-1.0-SNAPSHOT.jar
 ```
 
-> ⚠️ Asegúrate de correr el JAR desde la misma carpeta donde está la carpeta `docs/`, ya que ahí se almacenan todos los datos.
+> Asegúrate de correr el JAR desde la misma carpeta donde está la carpeta `docs/`, ya que ahí se almacenan todos los datos.
 
 ---
 
-## 📁 Estructura del proyecto
+## Estructura del proyecto
 
 ```
 GameZone_Pro/
@@ -97,9 +97,9 @@ GameZone_Pro/
 
 ---
 
-## ⚙️ Funcionamiento del programa
+## Funcionamiento del programa
 
-### 1. 🔐 Login / Registro
+### 1. Login / Registro
 
 Al iniciar el programa se muestra la pantalla de **Login**.
 
@@ -109,7 +109,7 @@ Al iniciar el programa se muestra la pantalla de **Login**.
 
 ---
 
-### 2. 🏠 Módulo principal
+### 2. Módulo principal
 
 Tras iniciar sesión accedes al módulo principal con un menú de navegación en la parte superior:
 
@@ -123,7 +123,7 @@ Tras iniciar sesión accedes al módulo principal con un menú de navegación en
 
 ---
 
-### 3. 🛒 Tienda de Videojuegos
+### 3. Tienda de Videojuegos
 
 - El catálogo se muestra en un **grid de tarjetas**
 - Haz **clic en una tarjeta** para ver los detalles del juego
@@ -134,12 +134,12 @@ Tras iniciar sesión accedes al módulo principal con un menú de navegación en
 
 ---
 
-### 4. 👤 Perfil de usuario
+### 4. Perfil de usuario
 
 - Muestra el **nombre**, **nivel** y **barra de XP**
 - Lista todos los **logros** del usuario:
-  - 🏆 **Dorado** — logro desbloqueado
-  - 🔒 **Gris** — logro pendiente
+  - **Dorado** — logro desbloqueado
+  - **Gris** — logro pendiente
 - Al ganar XP subes de nivel automáticamente:
 
 | Nivel | Título | XP necesario |
@@ -152,7 +152,7 @@ Tras iniciar sesión accedes al módulo principal con un menú de navegación en
 
 ---
 
-### 5. 🏆 Eventos y Torneos
+### 5. Eventos y Torneos
 
 - Consulta los torneos disponibles
 - Compra tickets para participar
@@ -160,13 +160,13 @@ Tras iniciar sesión accedes al módulo principal con un menú de navegación en
 
 ---
 
-### 6. 🚪 Cerrar sesión
+### 6. Cerrar sesión
 
 Presiona el botón **CERRAR SESIÓN** en la esquina superior derecha para volver a la pantalla de Login sin cerrar la aplicación.
 
 ---
 
-## 🗄️ Persistencia de datos
+## Persistencia de datos
 
 Todos los datos se almacenan en archivos `.txt` dentro de la carpeta `docs/` usando `|` como separador:
 
@@ -185,7 +185,7 @@ VDG-001|The Legend of Zelda|Aventura|299.99|Nintendo Switch|15|Explora Hyrule...
 
 ---
 
-## 📦 Dependencias
+## Dependencias
 
 ```xml
 <!-- FlatLaf — Tema oscuro moderno -->
@@ -205,7 +205,7 @@ VDG-001|The Legend of Zelda|Aventura|299.99|Nintendo Switch|15|Explora Hyrule...
 
 ---
 
-## 👨‍💻 Autor
+## Autor
 
 **Luis Monterroso**  
 Carné: 202500066  
