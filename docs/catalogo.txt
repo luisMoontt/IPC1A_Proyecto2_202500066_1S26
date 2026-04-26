@@ -1,6 +1,6 @@
-VDG-001|Minecraft Java&Berock|Aventura|299.99|Windows|0|Tu no lo sabes te estoy vigilando, desde la distancia me estoy acercando...|
-VDG-002|God of War|Aventura|350.0|PlayStation|0|Narra la historia de Kratos, un guerrero espartano que busca venganza contra los dioses mitológicos.|
-VDG-003|Halo|Aventura|250.0|Xbox|0|El juego narra la lucha del Jefe Maestro y la IA Cortana contra el Covenant (una alianza alienígena).|
-VDG-004|CupHead|Aventura|299.99|Windows|0|Tu no lo sabes te estoy vigilando, desde la distancia me estoy acercando...|
-VDG-005|Little Nightmares|Aventura|350.0|PlayStation|0|Narra la historia de Kratos, un guerrero espartano que busca venganza contra los dioses mitológicos.|
-VDG-006|Five nIghts at Freddy's|Aventura|250.0|Xbox|0|El juego narra la lucha del Jefe Maestro y la IA Cortana contra el Covenant (una alianza alienígena).|
+VDG-001|Minecraft Java&Berock|Aventura|299.99|Windows|41|Tu no lo sabes te estoy vigilando, desde la distancia me estoy acercando...|
+VDG-002|God of War|Aventura|350.0|PlayStation|50|Narra la historia de Kratos, un guerrero espartano que busca venganza contra los dioses mitológicos.|
+VDG-003|Halo|Aventura|250.0|Xbox|50|El juego narra la lucha del Jefe Maestro y la IA Cortana contra el Covenant (una alianza alienígena).|
+VDG-004|CupHead|Aventura|299.99|Windows|50|Tu no lo sabes te estoy vigilando, desde la distancia me estoy acercando...|
+VDG-005|Little Nightmares|Aventura|350.0|PlayStation|50|Narra la historia de Kratos, un guerrero espartano que busca venganza contra los dioses mitológicos.|
+VDG-006|Five nIghts at Freddy's|Aventura|250.0|Xbox|49|El juego narra la lucha del Jefe Maestro y la IA Cortana contra el Covenant (una alianza alienígena).|
