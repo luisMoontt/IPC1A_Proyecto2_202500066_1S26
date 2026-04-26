@@ -18,12 +18,14 @@ public class TournamentController {
     private static final String FILE_PATH = "docs/torneos.txt";
     private Tournament[] tournaments;
     private TicketController tk_controller;
+    private UserController u_controller;
     private int n_tournaments;
 
     public TournamentController() {
         this.tournaments = new Tournament[100];
         this.n_tournaments = 0;
         this.tk_controller = new TicketController();
+        this.u_controller = new UserController();
     }
 
     public boolean buyATicket(String id_tournament, String id_user){
@@ -37,6 +39,8 @@ public class TournamentController {
                         "Tickets Agotados", JOptionPane.ERROR_MESSAGE);
                     return false;
                 }
+                
+                u_controller.updateUser(id_user, 150);
                 
                 tk_controller.createTicket(id_user, id_tournament, tournaments[i].getName());
                 tournaments[i].setDisableTickes(tournaments[i].getDisableTickes() - 1);

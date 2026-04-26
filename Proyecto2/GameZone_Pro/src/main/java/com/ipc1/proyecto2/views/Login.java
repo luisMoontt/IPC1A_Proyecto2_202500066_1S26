@@ -22,7 +22,6 @@ public class Login extends javax.swing.JFrame {
         this.u_controller = new UserController();
         this.r_view = new Register();
         
-        
         initComponents();
     }
 

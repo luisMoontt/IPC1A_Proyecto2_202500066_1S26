@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,29 +22,60 @@ public class AchievementsController {
         this.count = 0;
     }
     
-    // AGREGAR /////////////////////////////////////////////////////////////////
-    public void add(int id_achievements, String id_user, String name, String description, int xp, boolean state) {
+    public void updateAchievement(String id_user, int id_achievement){
         loadAchievements();
-        if (count >= achievements.length) 
-        achievements[count++] = new Achievements(id_achievements, id_user, name, description, xp, state);
-        saveAchievementsToFile();
+        for (int i = 0; i < count; i++) {
+            if (achievements[i].getId_user().equals(id_user) && achievements[i].getId_achievement()==id_achievement){
+                achievements[i].setState(true);
+                
+                JOptionPane.showMessageDialog(null,
+                achievements[i].getName().toUpperCase()+"\n"+achievements[i].getDescription(),
+                "!LOGRO CONSEGUIDO!", JOptionPane.INFORMATION_MESSAGE);
+                
+                saveAchievementsToFile();
+                return;
+            }
+        }
     }
-
+    
+    // AGREGAR /////////////////////////////////////////////////////////////////
+    public void add(int id_achievements, String id_user, String name, String description, boolean state) {
+        if (count >= achievements.length){
+            System.out.println("No hay espacio para más logros.");
+            return;                              
+        }
+        
+        achievements[count++] = new Achievements(id_achievements, id_user, name, description, state);
+    }
+    
     // LISTAR POR USUARIO //////////////////////////////////////////////////////
     public Achievements[] listForUser(String id_user) {
+        loadAchievements();
         int total = 0;
+        int totalTrue = 0;
+        
         for (int i = 0; i < count; i++) {
             if (achievements[i].getId_user().equals(id_user)) total++;
         }
 
-        Achievements[] resultado = new Achievements[total];
+        Achievements[] result = new Achievements[total];
+        
         int idx = 0;
         for (int i = 0; i < count; i++) {
-            if (achievements[i].getId_user().equals(id_user)) {
-                resultado[idx++] = achievements[i];
+            if (achievements[i].getId_user().equals(id_user) && achievements[i].isState()) {
+                totalTrue++;
+                result[idx++] = achievements[i];
             }
         }
-        return resultado;
+        for (int i = 0; i < count; i++) {
+            if (achievements[i].getId_user().equals(id_user) && !achievements[i].isState()) {
+                result[totalTrue++] = achievements[i];
+            }
+        }
+        
+        System.out.println(result);
+        
+        return result;
     }
 
     
@@ -61,14 +93,13 @@ public class AchievementsController {
                 line = line.trim();
                 if (line.isEmpty()) continue;
                 String[] parts = line.split("\\|");
-                if (parts.length >= 6) {
+                if (parts.length >= 5) {
                     int     id_achievement = Integer.parseInt(parts[0]);
                     String  id_user        = parts[1];
                     String  name           = parts[2];
                     String  description    = parts[3];
-                    int     xp             = Integer.parseInt(parts[4]);
-                    boolean state          = Boolean.parseBoolean(parts[5]);
-                    achievements[count] = new Achievements(id_achievement, id_user, name, description, xp, state);
+                    boolean state          = Boolean.parseBoolean(parts[4]);
+                    achievements[count] = new Achievements(id_achievement, id_user, name, description, state);
                     count++;
                 }
             }
@@ -86,21 +117,18 @@ public class AchievementsController {
         }
     }
     //
-    public boolean saveAchievementsToFile() {
+    public void saveAchievementsToFile() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("docs/" + "logros.txt"))) {
             for (int i = 0; i < count; i++) {
                 bw.write(achievements[i].getId_achievement() + "|" +
                          achievements[i].getId_user()        + "|" +
                          achievements[i].getName()           + "|" +
                          achievements[i].getDescription()    + "|" +
-                         achievements[i].getXp()             + "|" +
                          achievements[i].isState()           + "|");
                 bw.newLine();
             }
-            return true;
         } catch (IOException e) {
             System.out.println("Error guardando logros: " + e.getMessage());
-            return false;
         }
     }
 }

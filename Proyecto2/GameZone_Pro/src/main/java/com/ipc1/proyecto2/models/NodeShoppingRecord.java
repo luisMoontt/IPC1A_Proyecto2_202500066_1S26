@@ -8,11 +8,11 @@ package com.ipc1.proyecto2.models;
 public class NodeShoppingRecord {
 
     private ShoppingRecord  record;
-    private NodeShoppingRecord siguiente;
+    private NodeShoppingRecord next;
 
     public NodeShoppingRecord(ShoppingRecord record) {
         this.record    = record;
-        this.siguiente = null;
+        this.next = null;
     }
 
     public ShoppingRecord getRecord() {
@@ -24,10 +24,10 @@ public class NodeShoppingRecord {
     }
 
     public NodeShoppingRecord getSiguiente() {
-        return siguiente;
+        return next;
     }
 
-    public void setSiguiente(NodeShoppingRecord siguiente) {
-        this.siguiente = siguiente;
+    public void setSiguiente(NodeShoppingRecord next) {
+        this.next = next;
     } 
 }

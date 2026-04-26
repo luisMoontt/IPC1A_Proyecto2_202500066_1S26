@@ -58,6 +58,27 @@ public class ShopCart {
         return null;
     }
 
+    public boolean removeVideogame(String id_videogame) {
+        if (head == null) return false;
+
+        if (head.getVideogame().getId_videogame().equals(id_videogame)) {
+            head = head.getSiguiente();
+            size--;
+            return true;
+        }
+        
+        NodeShopCart actual = head;
+        while (actual.getSiguiente() != null) {
+            if (actual.getSiguiente().getVideogame().getId_videogame().equals(id_videogame)) {
+                actual.setSiguiente(actual.getSiguiente().getSiguiente());
+                size--;
+                return true;
+            }
+            actual = actual.getSiguiente();
+        }
+        return false;
+    }
+    
     public void emptyCart() {
         head  = null;
         size = 0;
@@ -82,34 +103,5 @@ public class ShopCart {
     }
     public NodeShopCart getHead(){ 
         return head;  
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("=== Carrito de: ").append(user.getUsername()).append(" ===\n");
-
-        if (head == null) {
-            sb.append("  (vacío)\n");
-        } else {
-            NodeShopCart actual = head;
-            int linea = 1;
-            while (actual != null) {
-                VideoGames vg = actual.getVideogame();
-                sb.append(String.format(
-                    "  %d. [%s] %s (%s) | x%d | Q%.2f c/u | Subtotal: Q%.2f%n",
-                    linea++,
-                    vg.getId_videogame(),
-                    vg.getName(),
-                    vg.getPlataform(),
-                    actual.getCantidad(),
-                    vg.getPrice(),
-                    vg.getPrice() * actual.getCantidad()
-                ));
-                actual = actual.getSiguiente();
-            }
-        }
-        sb.append(String.format("  TOTAL: Q%.2f%n", calculateTotal()));
-        return sb.toString();
     }
 }

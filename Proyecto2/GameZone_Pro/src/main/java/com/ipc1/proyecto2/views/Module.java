@@ -7,6 +7,7 @@ package com.ipc1.proyecto2.views;
 import com.ipc1.proyecto2.controlllers.UserController;
 import com.ipc1.proyecto2.models.User;
 import java.awt.CardLayout;
+import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 /**
@@ -28,9 +29,11 @@ public class Module extends javax.swing.JFrame {
         this.u_controller = new UserController();
         this.loggedUser = loggedUser;
         
-        this.u_pane = new UserPane(loggedUser, u_controller);
+        this.u_pane = new UserPane(loggedUser, u_controller, this);
         
-        StorePane s_pane = new StorePane();
+        StorePane s_pane = new StorePane(loggedUser);
+        
+        
         AlbumPane a_pane = new AlbumPane();
         EventsPane e_pane = new EventsPane();
         RankingPane r_pane = new RankingPane();
@@ -60,6 +63,9 @@ public class Module extends javax.swing.JFrame {
         jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 changePane("perfil");
+                SwingUtilities.invokeLater(() -> {
+                    u_pane.refresh();
+                });
             }
         });
         jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {

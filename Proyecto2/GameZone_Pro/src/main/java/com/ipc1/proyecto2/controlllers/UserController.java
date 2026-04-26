@@ -1,6 +1,8 @@
 package com.ipc1.proyecto2.controlllers;
 
 import com.ipc1.proyecto2.models.User;
+import com.ipc1.proyecto2.views.Login;
+import java.awt.Window;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -15,6 +17,7 @@ import javax.swing.JOptionPane;
  */
 public class UserController {
     AchievementsController a_controller;
+    
     private User[] users;
     private int n_users;
     private User loggedUser;
@@ -33,6 +36,31 @@ public class UserController {
 
     public User getCurrentUser() {
         return loggedUser;
+    }
+    
+    public void updateUser(String username, int newEx){
+        loadUsers();
+        
+        for (int i = 0; i < n_users; i++) {
+            if (users[i].getUsername().equalsIgnoreCase(username)) {
+                
+                int totalXp = users[i].getXp()+newEx; 
+        
+                if((totalXp >= 500) && (totalXp < 1500)){
+                    users[i].setLevel(2);
+                } else if((totalXp >= 1500) && (totalXp < 3500)){
+                    users[i].setLevel(3);
+                } else if((totalXp >= 3500) && (totalXp < 7000)){
+                    users[i].setLevel(4);
+                } else if(totalXp >= 7000){
+                    users[i].setLevel(5);
+                }
+
+                users[i].setXp(totalXp);
+                
+                saveUsersToFile();
+            }
+        }
     }
     
     // LOGUEAR Y REGISTRAR /////////////////////////////////////////////////////
@@ -69,21 +97,24 @@ public class UserController {
         users[n_users] = new User(username, password, 0, 1);
         n_users++;
         
+        a_controller.loadAchievements();
+                
+        a_controller.add((1), username,"Primera Compra", "Realiza tu primera compra en la tienda.", false);
+        a_controller.add((2), username,"Coleccionista Novato", "Añade 10 cartas a tu álbum.", false);
+        a_controller.add((3), username,"Coleccionista Experto", "Completa una fila completa del álbum.", false);
+        a_controller.add((4), username,"Taquillero", "Compra tickets para 3 torneos distintos.", false);
+        
+        a_controller.add((5), username,"Alta Rareza", "Obtén una carta de rareza Legendaria.", false);
+        a_controller.add((6), username,"Gamer Dedicado", "Acumula 1,000 XP.", false);
+        a_controller.add((7), username,"Leyenda Viviente", "Alcanza el Nivel 5.", false);
+        a_controller.add((8), username,"Gran Gastador", "Gasta más de Q2,000 en la tienda.", false);
+        
+        a_controller.saveAchievementsToFile();
+        a_controller.listForUser(username);
+        
         saveUsersToFile();
         listUsers();
-        
-        a_controller.add((n_users+1), username,"Primera Compra", "Realiza tu primera compra en la tienda.", false);
-        a_controller.add((n_users+2), username,"Coleccionista Novato", "Añade 10 cartas a tu álbum.", false);
-        a_controller.add((n_users+3), username,"Coleccionista Experto", "Completa una fila completa del álbum.", false);
-        a_controller.add((n_users+4), username,"Taquillero", "Compra tickets para 3 torneos distintos.", false);
-        
-        a_controller.add((n_users+5), username,"Alta Rareza", "Obtén una carta de rareza Legendaria.", false);
-        a_controller.add((n_users+6), username,"Gamer Dedicado", "Acumula 1,000 XP.", false);
-        a_controller.add((n_users+7), username,"Leyenda Viviente", "Alcanza el Nivel 5.", false);
-        a_controller.add((n_users+8), username,"Gran Gastador", "Gasta más de Q2,000 en la tienda.", false);
        
-        
-        
         return (login(username, password));
     }
     //
@@ -120,17 +151,10 @@ public class UserController {
         }
         
         System.out.println("BIEN VENIDO "+username);
+        updateUser(username, 10);
+        
         loggedUser = found;
         return loggedUser;
-    }
-    //
-    public void logout() {
-        if (loggedUser != null) {
-            System.out.println("Sesión cerrada para: " + loggedUser.getUsername());
-            loggedUser = null;
-        } else {
-            System.out.println("No hay sesión activa.");
-        }
     }
     // BUSCAR Y LISTAR /////////////////////////////////////////////////////////
     public User findUser(String username) {

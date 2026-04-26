@@ -30,6 +30,7 @@ public class VideoGameController {
     }
     
     public VideoGames findVideoGame(String id_videoGame) {
+        loadFromFile();
         for (int i = 0; i < n_games; i++) {
             if (videogames[i].getId_videogame().equals(id_videoGame)) {
                 return videogames[i];
@@ -39,6 +40,7 @@ public class VideoGameController {
     }
     
     public VideoGames[] getVideogames() {
+        loadFromFile();
         VideoGames[] copia = new VideoGames[n_games];
         System.arraycopy(videogames, 0, copia, 0, n_games);
         return copia;
@@ -60,13 +62,13 @@ public class VideoGameController {
                 String[] parts = line.split("\\|");
                 if (parts.length >= 7) {
                     videogames[n_games] = new VideoGames(
-                        parts[0],                        // id_videogame
-                        parts[1],                        // name
-                        parts[2],                        // genre
-                        Double.parseDouble(parts[3]),    // price
-                        parts[4],                        // plataform
-                        Integer.parseInt(parts[5]),      // stock
-                        parts[6]                         // description
+                        parts[0],                        
+                        parts[1],                      
+                        parts[2],                        
+                        Double.parseDouble(parts[3]),    
+                        parts[4],                        
+                        Integer.parseInt(parts[5]),      
+                        parts[6]                       
                     );
                     n_games++;
                 }

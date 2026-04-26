@@ -60,6 +60,11 @@ public class Achievements {
     public void setState(boolean state) {
         this.state = state;
     }
+
+    @Override
+    public String toString() {
+        return "Achievements{" + "id_achievement=" + id_achievement + ", id_user=" + id_user + ", name=" + name + ", description=" + description + ", state=" + state + '}';
+    }
     
     
 }

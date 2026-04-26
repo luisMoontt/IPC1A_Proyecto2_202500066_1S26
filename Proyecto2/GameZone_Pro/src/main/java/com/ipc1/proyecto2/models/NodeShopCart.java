@@ -7,13 +7,13 @@ package com.ipc1.proyecto2.models;
 public class NodeShopCart {
 
     private VideoGames  videogame;
-    private int         cantidad;
-    private NodeShopCart siguiente;
+    private int cantidad;
+    private NodeShopCart next;
 
     public NodeShopCart(VideoGames videogame, int cantidad) {
         this.videogame  = videogame;
         this.cantidad   = cantidad;
-        this.siguiente  = null;
+        this.next  = null;
     }
 
     public VideoGames getVideogame() {
@@ -33,10 +33,10 @@ public class NodeShopCart {
     }
 
     public NodeShopCart getSiguiente() {
-        return siguiente;
+        return next;
     }
 
-    public void setSiguiente(NodeShopCart siguiente) {
-        this.siguiente = siguiente;
+    public void setSiguiente(NodeShopCart next) {
+        this.next = next;
     }
 }

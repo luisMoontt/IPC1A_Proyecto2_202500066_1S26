@@ -24,24 +24,24 @@ public class GameZone_Pro {
         ventanaLogin.setVisible(true);
         ventanaLogin.setLocationRelativeTo(null);
         
-//        UserController u_controller = new UserController();
-//        TournamentController tr_controller = new TournamentController();
-//        VideoGameController vg_controller = new VideoGameController();
-//        
-//        verifyDocs();
-//        u_controller.loadUsers();
-//        tr_controller.loadFromFile();
-//        tr_controller.buyATicket("TRN-000", "noely");
-//        vg_controller.loadFromFile();
-//        
-//        ShopCartController shc_controller = new ShopCartController(u_controller.findUser("noely"),vg_controller);
-//        ShoppingRecordController spr_controller = new ShoppingRecordController();
-//        
-//        shc_controller.addForId("VDG-001", 3);
-//        shc_controller.addForId("VDG-002", 1);
-//        shc_controller.payCart();
-//        spr_controller.listByUser("noely");
-//        
+        UserController u_controller = new UserController();
+        TournamentController tr_controller = new TournamentController();
+        VideoGameController vg_controller = new VideoGameController();
+        
+        verifyDocs();
+        //u_controller.loadUsers();
+        //tr_controller.loadFromFile();
+        //tr_controller.buyATicket("TRN-000", "noely");
+        //vg_controller.loadFromFile();
+        
+        //ShopCartController shc_controller = new ShopCartController(u_controller.findUser("noely"),vg_controller);
+        //ShoppingRecordController spr_controller = new ShoppingRecordController();
+        
+        //shc_controller.addForId("VDG-001", 3);
+        //shc_controller.addForId("VDG-002", 1);
+        //shc_controller.payCart();
+        //spr_controller.listByUser("noely");
+        
         //u_controller.register("luismont", "123456");
         //u_controller.register("luisElPro", "123456");
         //u_controller.saveUsersToFile();

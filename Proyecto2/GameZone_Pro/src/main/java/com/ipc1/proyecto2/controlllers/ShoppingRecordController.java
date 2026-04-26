@@ -16,18 +16,20 @@ import java.time.format.DateTimeFormatter;
 
 public class ShoppingRecordController {
     private static final String FILE_PATH = "docs/historial.txt";
-    private static final String SEP       = "|";
-
+    private UserController u_controller;
+    
     private NodeShoppingRecord head;
     private int size;
 
     public ShoppingRecordController() {
+        this.u_controller = new UserController();
         this.head  = null;
         this.size = 0;
     }
 
     private void add(ShoppingRecord record) {
         NodeShoppingRecord nuevo = new NodeShoppingRecord(record);
+        
         if (head == null) {
             head = nuevo;
         } else {
@@ -65,53 +67,42 @@ public class ShoppingRecordController {
                 nodo.getCantidad(),
                 nodo.getVideogame().getPrice() * nodo.getCantidad()
             ));
+            
+            u_controller.updateUser(id_user, (nodo.getCantidad()*50));
+            
             count++;
             nodo = nodo.getSiguiente();
         }
         
-        saveToFile();
         System.out.println("Se generaron " + count + " registros de compra para: " + id_user);
+        saveToFile();
     }
 
-    
-    public ShoppingRecord[] listByUser(String id_user) {
+    public NodeShoppingRecord listByUser(String id_user) {
         loadShoppingRecordsFromFile();
-        int count = 0;
-        NodeShoppingRecord actual = head;
-        while (actual != null) {
-            if (actual.getRecord().getId_user().equals(id_user)) count++;
-            actual = actual.getSiguiente();
-        }
-
-        ShoppingRecord[] resultado = new ShoppingRecord[count];
+        NodeShoppingRecord headFiltrado = null;
         double totalGastado = 0;
-        int idx = 0;
+        int count = 0;
 
-        System.out.println("\n=== Historial — Usuario: " + id_user + " ===");
-
-        actual= head;
+        NodeShoppingRecord actual = head;
         while (actual != null) {
             ShoppingRecord r = actual.getRecord();
             if (r.getId_user().equals(id_user)) {
-                System.out.printf(
-                    "  [%s] %s | %s %s | x%d | Q%.2f%n",
-                    r.getId_videogame(), r.getName_videogame(),
-                    r.getDate(), r.getTime(),
-                    r.getQuantity(), r.getTotal()
-                );
-                totalGastado     += r.getTotal();
-                resultado[idx++]  = r;
+                NodeShoppingRecord nuevo = new NodeShoppingRecord(r);
+                nuevo.setSiguiente(headFiltrado);
+                headFiltrado = nuevo;
+                totalGastado += r.getTotal();
+                count++;
             }
             actual = actual.getSiguiente();
         }
 
         if (count == 0) {
-            System.out.println("  Sin registros para este usuario.");
+            System.out.println("Sin registros para: " + id_user);
         } else {
-            System.out.printf("  Total gastado: Q%.2f  (%d compras)%n", totalGastado, count);
+            System.out.printf("Total gastado: Q%.2f (%d compras)%n", totalGastado, count);
         }
-
-        return resultado;
+        return headFiltrado;
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -155,12 +146,12 @@ public class ShoppingRecordController {
             while (actual != null) {
                 ShoppingRecord r = actual.getRecord();
                 bw.write(
-                    r.getId_videogame()   + SEP +
-                    r.getName_videogame() + SEP +
-                    r.getId_user()        + SEP +
-                    r.getDate()           + SEP +
-                    r.getTime()           + SEP +
-                    r.getQuantity()       + SEP +
+                    r.getId_videogame() + "|" +
+                    r.getName_videogame() + "|" +
+                    r.getId_user() + "|" +
+                    r.getDate() + "|" +
+                    r.getTime() + "|" +
+                    r.getQuantity() + "|" +
                     r.getTotal()
                 );
                 bw.newLine();
